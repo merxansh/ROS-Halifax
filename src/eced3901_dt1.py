@@ -61,8 +61,8 @@ class SquareMove(object):
 		# We publish for a second to be sure the robot receive the message
 		while time.time() - self.t_init < 1 and not ros.is_shutdown():
 
-		self.vel_ros_pub(Twist())
-		time.sleep(self.pub_rate)
+			self.vel_ros_pub(Twist())
+			time.sleep(self.pub_rate)
 
 		sys.exit("The process has been interrupted by the user!")
 
