@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import math
 import rospy as ros
 import sys
@@ -6,17 +7,6 @@ import time
 from geometry_msgs.msg import Twist, Pose
 from nav_msgs.msg import Odometry
 from tf.transformations import euler_from_quaternion, quaternion_from_euler
-
-
-__author__ = "Gabriel Urbain" 
-__copyright__ = "Copyright 2018, IDLab, UGent"
-
-__license__ = "MIT" 
-__version__ = "1.0" 
-__maintainer__ = "Gabriel Urbain"
-__email__ = "gabriel.urbain@ugent.be" 
-__status__ = "Education" 
-__date__ = "October 15th, 2018"
 
 
 class ShapeMove(object):
@@ -176,20 +166,26 @@ class ShapeMoveOdom(ShapeMove):
             time.sleep(0.1)
    
 
-    #students need to fix these angles ===============================
 
         # Implement main fixed Dead-Reckon coordinate instructions
         
         # Counterclockwise through shape
+	#Move 1.1m forward
         self.move_of(1.1)
+	#turn 90degrees
         self.turn_of(math.pi*1/2, 0.2)
+	#Move 1.1m forward
         self.move_of(1.1)
+	#turn 90degrees
         self.turn_of(math.pi*1/2, 0.2)
+	#Move 1.1m
         self.move_of(1.1)
+	#turn 90degrees
         self.turn_of(math.pi*1/2, 0.2)
+	#Move 1.1m
         self.move_of(1.1)
        
-        # Clockwise through shape
+        # Clockwise through shape not required for DT2
        #self.turn_of(math.pi, 0.2)
        #self.move_of(1.1)
       #self.turn_of(math.pi*1/2, -0.2)

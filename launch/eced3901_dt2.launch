@@ -24,8 +24,10 @@
           args="-d $(find turtlebot3_slam)/rviz/turtlebot3_$(arg slam_methods).rviz"/>
   </group>
 
-
+   <!-- For running Python code -->
    <node name="move_odom" pkg="eced3901-2022-team19" type="dt1_sol.py" args="odom" />
+
+  <!-- For saving the map to maps Lab 5 -->
    <node name="map_saver" pkg="map_server" type="map_saver" args=" -f $(find eced3901-2022-team19)/maps/lab5map" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' " required="true" />
 
 </launch>
