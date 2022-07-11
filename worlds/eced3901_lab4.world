@@ -33,7 +33,7 @@
 
     <!-- Load model -->
     <include>
-      <uri>model://eced3901_lab4</uri>
+      <uri>model://eced3901_final</uri>
     </include>
 
     <model name='obstacle'>
@@ -58,7 +58,7 @@
             </contact>
           </surface>
         </collision>
-
+<!--
         <visual name='obstacle_1'>
           <pose>0.9 0.9 0.25 0 0 0</pose>
           <geometry>
@@ -74,7 +74,7 @@
             </script>
           </material>
         </visual>
-<!--
+
         <collision name='obstacle_2'>
           <pose>-0.6 0.6 0.25 0 0 0</pose>
           <geometry>
