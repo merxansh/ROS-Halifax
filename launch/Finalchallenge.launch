@@ -16,6 +16,9 @@
   <!-- AMCL -->
   <include file="$(find eced3901-2022-team19)/launch/eced3901_amcl.launch"/>
 
+  <!-- Navigation Goal -->
+  <node name= "navigation" pkg="eced3901-2022-team19" type="eced3901-2022-team19" args="simple_navigation_goals" />
+
   <!-- move_base -->
   <include file="$(find eced3901-2022-team19)/launch/eced3901_movebase.launch">
     <arg name="model" value="$(arg model)" />

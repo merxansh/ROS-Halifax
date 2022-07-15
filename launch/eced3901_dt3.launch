@@ -1,7 +1,7 @@
 <launch>
   <!-- Arguments -->
   <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
-  <arg name="map_file" default="$(find eced3901-2022-team19)/maps/lab4map.yaml"/>
+  <arg name="map_file" default="$(find eced3901-2022-team19)/maps/finalchallenge.yaml"/>
   <arg name="open_rviz" default="true"/>
   <arg name="move_forward_only" default="false"/>
 
@@ -25,11 +25,11 @@
     <arg name="move_forward_only" value="$(arg move_forward_only)"/>
   </include>
 
-  <!-- run serial node for base mega -->    
+  <!-- run serial node for base mega    
    <node pkg="rosserial_python" type="serial_node.py" name="serial_node1">
    <param name="port" value="/dev/ttyUSB0"/>
    <param name="baud" value="57600"/>
-   </node>
+   </node> -->
 
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 

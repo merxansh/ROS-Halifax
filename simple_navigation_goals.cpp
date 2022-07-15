@@ -13,17 +13,17 @@ int main(int argc, char** argv)
 	ros::init(argc, argv, "simple_navigation_goals");
 
 	//INitializa array for x and y coordinates
-	double a[4]={1.4,1.4,0.3,0.3};
-	double b[4]={0.3,1.4,1.4,0.3};
+	double a[] = { 0.9,1.5,2.1,2.7,2.7,2.7,2.7,2.7,3.3,3.3,3.3,3.9,3.9,3.9,3.9,3.9,3.9,3.9,3.3,2.7,2.7,2.7,2.1,1.5,1.5,2.1,2.7,3.3,3.3,3.3,3.9,3.9,3.9,3.9,3.9,3.9,3.9,3.9,3.3,2.7,2.1,1.5,0.9,0.3,0.3,0.3,0.9,0.9,0.9,1.5,2.1,2.7,3.3,3.9,3.9,3.9,3.9,3.9 };
+	double b[] = { 0.3,0.3,0.3,0.3,0.9,1.5,2.1,2.7,2.7,2.4,1.5,1.5,0.9,0.3,0.9,1.5,2.1,2.7,2.7,2.7,3.3,3.9,3.9,3.9,3.3,3.3,3.3,3.3,2.7,2.1,2.1,1.5,0.9,0.3,0.9,1.5,2.1,2.7,2.7,2.7,2.7,2.7,2.7,2.7,2.1,1.5,1.5,2.1,2.7,2.7,2.7,2.7,2.7,2.7,2.1,1.5,0.9,0.3 };
 
 	//INitializa for loop  with a counter i
-	for(int i=0; i<4;i++)
+	for (int i = 0; i <= 57; i++)
 	{
 		//tell the action client that we want to spin a thread by default
 		MoveBaseClient ac("move_base", true);
 
 		//wait for the action server to come up to begin processing goals
-		while(!ac.waitForServer(ros::Duration(5.0))){
+		while (!ac.waitForServer(ros::Duration(5.0))) {
 			ROS_INFO("Waiting for the move_base action server to come up");
 		}
 		move_base_msgs::MoveBaseGoal goal;
@@ -38,17 +38,18 @@ int main(int argc, char** argv)
 		goal.target_pose.pose.position.y = b[i];
 		goal.target_pose.pose.orientation.w = 1;
 
-
 		ROS_INFO("Sending goal");
 		ac.sendGoal(goal);
 
 		ac.waitForResult();
 
-		if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
-			ROS_INFO("Hooray, the base moved 1.1 meter forward");
-		} else {
-			ROS_INFO("The base failed to move forward 1.1 meter for some reason");
+		if (ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
+			ROS_INFO("Acheived waypoint %d  %.2f %.2f ", i,a[i],b[i]);
 		}
+		else {
+			ROS_INFO("The base failed to move");
+		}
+	}
 
 	return 0;
 }
