@@ -13,11 +13,11 @@ int main(int argc, char** argv)
 	ros::init(argc, argv, "simple_navigation_goals");
 
 	//INitializa array for x and y coordinates
-	double a[] = { 0.9,1.5,2.1,2.7,2.7,2.7,2.7,2.7,3.3,3.3,3.3,3.9,3.9,3.9,3.9,3.9,3.9,3.9,3.3,2.7,2.7,2.7,2.1,1.5,1.5,2.1,2.7,3.3,3.3,3.3,3.9,3.9,3.9,3.9,3.9,3.9,3.9,3.9,3.3,2.7,2.1,1.5,0.9,0.3,0.3,0.3,0.9,0.9,0.9,1.5,2.1,2.7,3.3,3.9,3.9,3.9,3.9,3.9 };
-	double b[] = { 0.3,0.3,0.3,0.3,0.9,1.5,2.1,2.7,2.7,2.4,1.5,1.5,0.9,0.3,0.9,1.5,2.1,2.7,2.7,2.7,3.3,3.9,3.9,3.9,3.3,3.3,3.3,3.3,2.7,2.1,2.1,1.5,0.9,0.3,0.9,1.5,2.1,2.7,2.7,2.7,2.7,2.7,2.7,2.7,2.1,1.5,1.5,2.1,2.7,2.7,2.7,2.7,2.7,2.7,2.1,1.5,0.9,0.3 };
+	double a[] = {0.9,1.5,1.5,1.5,1.5,2.1,3.9};
+	double b[] = { 0.3,0.3,0.9,1.5,2.1,1.5,0.3};
 
 	//INitializa for loop  with a counter i
-	for (int i = 0; i <= 57; i++)
+	for (int i = 0; i <= 7; i++)
 	{
 		//tell the action client that we want to spin a thread by default
 		MoveBaseClient ac("move_base", true);
@@ -32,7 +32,6 @@ int main(int argc, char** argv)
 		goal.target_pose.header.frame_id = "map";
 		goal.target_pose.header.stamp = ros::Time::now();
 
-		// Counterclockwise through space
 		//Calling a and b arrays to correspond with x and y coordinates with respect to counter i
 		goal.target_pose.pose.position.x = a[i];
 		goal.target_pose.pose.position.y = b[i];
@@ -42,7 +41,7 @@ int main(int argc, char** argv)
 		ac.sendGoal(goal);
 
 		ac.waitForResult();
-
+ROS_INFO("Acheived waypoint %d  %.2f %.2f ", i,a[i],b[i]);
 		if (ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
 			ROS_INFO("Acheived waypoint %d  %.2f %.2f ", i,a[i],b[i]);
 		}
